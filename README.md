@@ -63,8 +63,8 @@ The API follows RESTful principles to provide a clean, intuitive interface for f
 
 1. Clone the repository  
    ```bash
-   git clone https://github.com/yourusername/pulke-blogs-api.git
-   cd pulke-blogs-api
+   git clone https://github.com/iraqooh/pulke_blogs.git
+   cd pulke_blogs
    ```
 2. Create a virtual environment and activate it
 
