@@ -1,0 +1,9 @@
+Flask
+Flask-SQLAlchemy
+Flask-Marshmallow
+marshmallow-sqlalchemy
+Flask-JWT-Extended
+Flask-CORS
+python-dotenv
+python-slugify
+flask-limiter

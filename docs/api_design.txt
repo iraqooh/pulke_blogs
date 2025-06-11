@@ -1,0 +1,193 @@
+Authentication & Authorization
+POST /auth/register
+Register a new user account.
+
+POST /auth/login
+Authenticate and return JWT token or session cookie.
+
+POST /auth/logout
+Terminate the user session/token.
+
+GET /auth/profile
+Retrieve authenticated user's profile.
+
+Role-based permissions enforced for endpoint access (e.g., admin, author, reader, moderator).
+
+Post Management
+GET /posts
+Retrieve paginated list of published blog posts. Supports filtering and search.
+
+GET /posts/:id
+Retrieve details of a specific post (includes tags, author info, likes count, bookmark status).
+
+POST /posts
+Create a new blog post (authenticated users). Slug auto-generated from title if not provided.
+
+PUT /posts/:id
+Update an existing post (author or admin).
+
+DELETE /posts/:id
+Delete a blog post (author or admin).
+
+GET /posts/drafts
+Retrieve draft posts (author only).
+
+PATCH /posts/:id/publish
+Publish or unpublish a post.
+
+POST /posts/:id/bookmark
+Bookmark a post (authenticated user). One bookmark per user per post enforced.
+
+DELETE /posts/:id/bookmark
+Remove bookmark from a post.
+
+GET /posts/:id/bookmarks
+Retrieve list of users who bookmarked the post (admin/author view).
+
+GET /posts/:id/views
+Retrieve view logs or count for a post (admin/author).
+
+POST /posts/:id/view
+Register a post view (tracked by user or IP).
+
+Category & Tag Management
+GET /categories
+List all post categories.
+
+POST /categories
+Create a new category (admin only).
+
+PUT /categories/:id
+Update an existing category.
+
+DELETE /categories/:id
+Delete a category.
+
+GET /tags
+List all tags.
+
+POST /tags
+Create a tag (optional, admin/author).
+
+DELETE /tags/:id
+Remove a tag.
+
+Comments
+GET /posts/:id/comments
+List comments on a specific post. Supports pagination and sorting.
+
+POST /posts/:id/comments
+Add a comment to a post (support for optional parent_id for replies).
+
+PUT /comments/:id
+Edit a comment (by author or moderator).
+
+DELETE /comments/:id
+Delete a comment (by author or moderator).
+
+POST /comments/:id/like
+Like a comment.
+
+DELETE /comments/:id/like
+Remove like from a comment.
+
+Pagination, Search, and Filtering
+GET /posts?search=keyword
+Full-text search in titles, content, and tags.
+
+GET /posts?category=tech&tag=react
+Filter posts by category and tag.
+
+GET /posts?author=123
+Filter posts by author ID.
+
+GET /posts?page=2&limit=10
+Paginated results for posts.
+
+GET /comments?page=1&sort=latest
+Sort and paginate comments.
+
+User Profiles and Authors
+GET /users
+List all public author profiles.
+
+GET /users/:id
+Retrieve a public profile with posts.
+
+PUT /users/:id
+Update profile details (authenticated user only).
+
+GET /users/:id/posts
+Get posts by a specific author.
+
+GET /users/:id/bookmarks
+Get list of posts bookmarked by a user.
+
+Analytics and Stats
+GET /stats/posts
+Number of posts, drafts, published posts (aggregated).
+
+GET /stats/views
+Track views per post (total and by user/IP).
+
+GET /stats/comments
+Number of comments per post.
+
+GET /stats/popular
+Most viewed or liked posts.
+
+Reactions & Likes
+POST /posts/:id/like
+Like a post (enforces single like per user per post).
+
+DELETE /posts/:id/like
+Remove like from a post.
+
+GET /posts/:id/likes
+Retrieve total like count for a post.
+
+Constraint: Only one of post_id or comment_id is allowed in likes at a time.
+
+Uniqueness enforced at DB and application level for likes (user_id + post_id and user_id + comment_id).
+
+Internationalization
+Support lang query parameter (e.g., lang=en, lang=fr, lang=sw).
+
+GET /posts/:slug?lang=sw
+Return localized post content if available.
+
+Media Uploads
+POST /media/upload
+Upload image/video attachments.
+
+GET /media/:id
+Retrieve uploaded media.
+
+Post featured image: Allow media ID during post creation/update.
+
+Notifications & Subscriptions
+POST /subscribe
+Subscribe to blog or specific categories.
+
+POST /posts/:id/notify
+Notify subscribers about a new post.
+
+GET /notifications
+List notifications for user (new posts/comments).
+
+Admin Dashboard Endpoints
+GET /admin/posts
+Admin view of all posts including drafts and deleted.
+
+GET /admin/users
+Manage users, roles, and permissions.
+
+GET /admin/reports
+Generate usage reports or export data.
+
+Developer-Focused Features
+API Versioning: e.g., /api/v1/posts
+
+Rate Limiting: To prevent abuse.
+
+Webhooks: Notify external services on new posts or comments.

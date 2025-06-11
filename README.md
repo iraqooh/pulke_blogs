@@ -82,10 +82,13 @@ pip install -r requirements.txt
 
 4. Initialize the database
 
+Run this once:
+
 ```bash
-flask db init
-flask db migrate
-flask db upgrade
+flask shell
+>>> from app import db
+>>> db.create_all()
+>>> exit()
 ```
 
 5. Run the development server
@@ -93,11 +96,11 @@ flask db upgrade
 ```bash
 flask run
 ```
-The API will be available at http://localhost:5000.
+The API will be available at http://localhost:5000/api/v1.
 
 ## API Documentation
 
-Detailed API endpoint documentation is available in the /docs folder or via the /swagger route when the server is running.
+Detailed API endpoint documentation is available in the /docs folder (or later via the /swagger route when the server is running).
 
 ## License
 
